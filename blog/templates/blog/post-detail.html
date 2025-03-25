@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+<!-- load -->
+{% load static %}
+<!-- bloc -->
+
+{% block title %} This post title {% endblock %}
+<!-- css -->
+{% block css_files %}
+<!-- start -->
+<link rel="stylesheet" href="{% static "blog/post-detail.css" %}">
+<!-- diflink -->
+<!-- end -->
+{% endblock %}
+<!-- bloc -->
+
+{%block content %}
+<section id="summary">
+  <h2>{{ post.title }}</h2>
+  <div class="">
+    {% for tag in post_tags %}
+    <span class="tag">{{ tag.caption }}</span>
+    {% endfor %}
+  </div>
+  <article>
+    <img
+      src="{{ post.image.url }}"
+      alt="{{
+    post.title }}"
+    />
+    <address>
+      By <a href="mailto:{{post.author.email_adress}}">{{ post.author }}</a>
+    </address>
+    <div class="">
+      last update <time datetime="">{{ post.date|date:"d M Y" }}</time>
+    </div>
+  </article>
+</section>
+<main>
+  <p>{{ post.content }}</p>
+</main>
+<section id="comment-form">
+  <h2>Votre commentaire</h2>
+  <form>
+    <button>Enregitrer</button>
+  </form>
+</section>
+{% endblock %}

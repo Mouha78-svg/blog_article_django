@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+<!-- load -->
+{% load static %}
+<!-- bloc -->
+
+{% block title %} My blog{% endblock %}
+<!-- css -->
+{% block css_files %}
+<!-- start -->
+<link rel="stylesheet" href="{% static "blog/index.css" %}">
+<!-- diflink -->
+<link rel="stylesheet" href="{% static "blog/post.css" %}">
+<!-- end -->
+{% endblock %}
+<!-- bloc -->
+
+{%block content %}
+
+<section id="welcome">
+  <header>
+    <img class="img" src="{% static "blog/images/seye.jpeg" %}" alt="seye
+    photo">
+    <h2>MSdev blog</h2>
+  </header>
+  <p>Je suis un developpeur web mobile califier.</p>
+</section>
+<section id="latest-posts">
+  <h2>Mon dernier post</h2>
+  <ul>
+    {% for post in posts %} {% include "blog/includes/post.html" %} {% endfor %}
+  </ul>
+</section>
+<section id="about">
+  <h2>Ce que je fait</h2>
+  <p>
+    J'aime faire de laa programmation pour m'antrainer chaque jours pour devenir
+    senior en progammation
+  </p>
+  <p>
+    la pratique me donne la perfection de mieux avancer sur ce que je fait en
+    mon temp
+  </p>
+</section>
+{% endblock %}

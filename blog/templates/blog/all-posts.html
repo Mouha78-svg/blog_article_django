@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+<!-- load -->
+{% load static %}
+<!-- bloc -->
+
+{% block title %} All my posts {% endblock %}
+<!-- css -->
+{% block css_files %}
+<!-- start -->
+<link rel="stylesheet" href="{% static "blog/post.css" %}">
+<!-- diflink -->
+<link rel="stylesheet" href="{% static "blog/all-posts.css" %}">
+<!-- end -->
+{% endblock %}
+<!-- bloc -->
+
+{%block content %}
+<section id="all-posts">
+  <h2>My collected post</h2>
+
+  <ul>
+    {% for post in all_posts %}
+    <!-- incrementation -->
+    {% include "blog/includes/post.html" %}
+    <!-- incrementation -->
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}
