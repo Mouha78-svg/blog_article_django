@@ -41,7 +41,10 @@
 <section id="comment-form">
   <h2>Votre commentaire</h2>
   <form>
-    <button>Enregitrer</button>
+    {% csrf_token %}
+    <!-- comment -->
+    {{ comment_form }}
+    <button type="submit">Enregitrer</button>
   </form>
 </section>
 {% endblock %}

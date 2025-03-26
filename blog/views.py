@@ -1,11 +1,12 @@
-from .forms import CommentForm
 from django.shortcuts import render , get_object_or_404
 from django.views.generic import ListView ,DetailView
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+from .forms import CommentForm
 from .models import Post
 from django.views import View
+from django import forms
 
 
 # Create your views here.
@@ -29,11 +30,13 @@ class AllPostView(ListView):
 class SinglePostView(DetailView):
     template_name = "blog/post-detail.html"
     model = Post
-
     def get_context_data(self, **kwargs):
         context =  super().get_context_data(**kwargs)
-        context["post_tags"] = self.object.tags.all()
+        context["post_tags"] = self.object.tags.all() 
         return context
+     
+
+    
       
 
     
