@@ -13,7 +13,13 @@
 {% endblock %}
 <!-- bloc -->
 
-{%block content %}
+{%block content %} {% if comment_form.errors %}
+<div id="alert">
+  <h2>L'enregistrement de la commentaire a echoué</h2>
+  <p>S'il vous plait esseyer encore</p>
+  <a href="#comment_form">Regler l'erreur</a>
+</div>
+{% endif %}
 <section id="summary">
   <h2>{{ post.title }}</h2>
   <div class="">
@@ -35,15 +41,37 @@
     </div>
   </article>
 </section>
+
 <main>
-  <p>{{ post.content }}</p>
+  <p>{{ post.content | linebreaks }}</p>
 </main>
+
+<section id="comments">
+  <ul>
+    {% for comment in comments %}
+    <li>
+      {{ comment.user_name }}
+      <!-- para -->
+      <p>{{ comment.text | linebreaks}}</p>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
 <section id="comment-form">
   <h2>Votre commentaire</h2>
-  <form>
+  <form action="{% url 'post-detail-page' post.slug %}" method="POST">
     {% csrf_token %}
     <!-- comment -->
-    {{ comment_form }}
+    {% for form_field in comment_form %}
+    <div class="form_control {% if form_field.errors %} Invalid {% endif%}">
+      {{ form_field.label_tag }}
+      <!-- form -->
+      {{ form_field }}
+      <!-- form -->
+      {{form_field.errors }}
+    </div>
+    {% endfor %}
     <button type="submit">Enregitrer</button>
   </form>
 </section>
