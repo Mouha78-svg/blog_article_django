@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+<!-- load -->
+{% load static %}
+<!-- bloc -->
+
+{% block title %} My stored posts{% endblock %}
+<!-- css -->
+{% block css_files %}
+<!-- start -->
+<link rel="stylesheet" href="{% static "blog/stored-posts.css" %}">
+<!-- diflink -->
+<!-- end -->
+{% endblock %}
+
+<!-- content -->
+{%block content %}
+<section id="stored-posts">
+    {% if not has_posts %}
+    <p>Vous n'avez pas enregistrer aucun  titre article</p>
+    {% endif %}
+  <ul>
+    {% for post in posts %}
+    <li><a href="{% url "post-detail-page" post.slug %}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}
